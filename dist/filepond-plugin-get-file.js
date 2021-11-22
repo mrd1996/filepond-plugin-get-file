@@ -49,8 +49,8 @@
 
   const downloadFile = (item, allowDownloadByUrl) => {
     // if client want to download file from remote server
-    if (allowDownloadByUrl && item.getMetadata('url')) {
-      location.href = item.getMetadata('url'); // full path to remote server is stored in metadata with key 'url'
+    if (allowDownloadByUrl && item.serverId) {
+      location.href = allowDownloadByUrl + item.serverId; // full path to remote server is stored in metadata with key 'url'
     } else {
       // create a temporary hyperlink to force the browser to download the file
       const a = document.createElement('a');
@@ -119,7 +119,7 @@
     return {
       options: {
         labelButtonDownloadItem: ['Download file', Type.STRING],
-        allowDownloadByUrl: [false, Type.BOOLEAN],
+        allowDownloadByUrl: [false, Type.STRING],
       },
     };
   }; // fire pluginloaded event if running in browser, this allows registering the plugin when using async script tags

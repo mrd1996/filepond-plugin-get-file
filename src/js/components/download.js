@@ -24,19 +24,18 @@ export const getDownloadIcon = (labelButtonDownload) => {
  */
 export const downloadFile = (item, allowDownloadByUrl) => {
     // if client want to download file from remote server
-    if(allowDownloadByUrl && item.getMetadata('url')) {
-        location.href = item.getMetadata('url'); // full path to remote server is stored in metadata with key 'url'
-      } else {
-        // create a temporary hyperlink to force the browser to download the file
-        const a = document.createElement("a");
-        const url = window.URL.createObjectURL(item.file);
-        document.body.appendChild(a);
-        a.style.display = 'none';
-        a.href = url;
-        a.download = item.file.name;
-        a.click();
-
-        window.URL.revokeObjectURL(url);
-        a.remove();
+    if (allowDownloadByUrl && item.serverId) {
+      location.href = allowDownloadByUrl + item.serverId; // full path to remote server is stored in metadata with key 'url'
+    } else {
+      // create a temporary hyperlink to force the browser to download the file
+      const a = document.createElement('a');
+      const url = window.URL.createObjectURL(item.file);
+      document.body.appendChild(a);
+      a.style.display = 'none';
+      a.href = url;
+      a.download = item.file.name;
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
     }
 }

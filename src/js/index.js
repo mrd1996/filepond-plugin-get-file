@@ -53,7 +53,7 @@ const plugin = fpAPI => {
     return {
         options: {
             labelButtonDownloadItem: ['Download file', Type.STRING],
-            allowDownloadByUrl: [false, Type.BOOLEAN],
+            allowDownloadByUrl: [false, Type.STRING],
         }
     };
 };
